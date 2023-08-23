@@ -32,7 +32,7 @@ void Socket::Bind(Sockaddr* _addr)
      struct sockaddr_in addr = _addr->getAddr();
     socklen_t addr_len = _addr->getAddr_len();
     check(bind(fd,(struct sockaddr*)&addr,addr_len) == -1,"socket bind error");
-    _addr->setInetAddr(addr, addr_len);
+    _addr->setAddr(addr, addr_len);
 }
 
 void Socket::Listen()
@@ -47,7 +47,7 @@ int Socket::Accept(Sockaddr* clientaddr)
     bzero(&addr, sizeof(addr));
     int clnt_sockfd = ::accept(fd, (sockaddr*)&addr, &addr_len);
     check(clnt_sockfd == -1, "socket accept error");
-    clientaddr->setInetAddr(addr, addr_len);
+    clientaddr->setAddr(addr, addr_len);
     return clnt_sockfd;
 }
 

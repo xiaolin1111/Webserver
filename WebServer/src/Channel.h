@@ -10,7 +10,6 @@ class EventLoop;
 
 class Channel
 { 
-    friend class EventLoop;
 public:
     Channel(){}
     Channel(int fd_,EventLoop* loop);

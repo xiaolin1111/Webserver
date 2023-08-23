@@ -48,14 +48,14 @@ void Epoll::del(Channel* ch)
     check(epoll_ctl(ep,EPOLL_CTL_DEL,ch->getFd(),&ev_),"epoll del error");
 }
 
-std::vector<Channel> Epoll::poll()
+std::vector<Channel*> Epoll::poll()
 {
-    std::vector<Channel> vec;
+    std::vector<Channel*> vec;
     int nfds = epoll_wait(ep,evs,MAXEVENTS,TIMEOUT);
     for(int i = 0;i < nfds; ++i)
     {
         Channel* tmp = (Channel*)evs[i].data.ptr;
-        vec.push_back(*tmp);
+        vec.push_back(tmp);
     }
     return vec;
 }

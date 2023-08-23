@@ -62,7 +62,7 @@ ThreadPool::~ThreadPool()
     delete [] threads;
 }
 
-bool ThreadPool::append(Channel ch)
+bool ThreadPool::append(Channel* ch)
 {
     m_lock.lock();
     if(request_queue.size() > max_requests)
@@ -95,10 +95,10 @@ void ThreadPool::run()
             m_lock.unlock();
             continue;
         }
-        Channel ch = request_queue.front();
+        Channel* ch = request_queue.front();
         request_queue.pop_front();
         m_lock.unlock();
     
-        ch.handleEvent();
+        ch->handleEvent();
     }
 }

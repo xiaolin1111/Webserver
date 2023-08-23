@@ -46,7 +46,7 @@ public:
     ThreadPool(int _thread_number = 2,int max_requests = 1000);
     ~ThreadPool();
 
-    bool append(Channel ch);
+    bool append(Channel* ch);
 private:
     static void* work(void*);
 
@@ -56,7 +56,7 @@ private:
     int  thread_number;                         //线程池中的线程数量
     int  max_requests;                          //请求队列中允许的最大请求数
     pthread_t*               threads;           //线程数组
-    std::list<Channel>  request_queue;          //请求队列
+    std::list<Channel*>  request_queue;          //请求队列
     Lock m_lock;                                //互斥锁
     Sem  sem;                                   //信号量    
     bool stop;                                  //结束线程

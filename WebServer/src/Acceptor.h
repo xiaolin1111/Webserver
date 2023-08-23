@@ -12,7 +12,6 @@ class EventLoop;
 
 class Acceptor
 {
-    friend class Server;
 public:
     Acceptor(){}
     Acceptor(EventLoop*);

@@ -17,7 +17,7 @@ void EventLoop::loop()
 {
     while(true)
     {
-        std::vector<Channel> vec = EP->poll();
+        std::vector<Channel*> vec = EP->poll();
         for(int i = 0;i < vec.size();++i)
         {
             threadpool->append(vec[i]);

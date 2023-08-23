@@ -23,7 +23,7 @@ public:
 
     void del(Channel*);
 
-    std::vector<Channel> poll();
+    std::vector<Channel*> poll();
 
     void upChannel(Channel*);
 
